@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-const messageSchema = new mongoose.Schema(
+ export const messageSchema = new mongoose.Schema(
     {
-        senderID:{
+        senderId:{
             type:mongoose.Schema.Types.ObjectId,
             ref:"User",
             require: true,
@@ -10,7 +10,7 @@ const messageSchema = new mongoose.Schema(
         receiverId:{
             type: mongoose.Schema.Types.ObjectId,
             ref:"User",
-            require: true,
+            required: true,
         },
         text:{
             type:String,
