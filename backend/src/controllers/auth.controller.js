@@ -54,7 +54,7 @@ export const login=async(req,res)=>{
        const user = await User.findOne({email});
        
        if(!user){
-        return res.status(400).json({message:"Invalid crrredential"});
+        return res.status(400).json({message:"Invalid credential"});
        }
 
        const isPasswordCorrect = await bcrypt.compare(password, user.password);
@@ -86,7 +86,7 @@ export const logout=(req,res)=>{
 
 export const updateProfile = async (req,res)=>{
   try{
-    const {profilePic} =req.body;
+    const {profilePic} = req.body;
     const userId = req.user._id;
 
     if(!profilePic){
@@ -96,7 +96,7 @@ export const updateProfile = async (req,res)=>{
     const uploadResponse = await cloudinary.uploader.upload(profilePic)
     const updateUser = await User.findByIdAndUpdate(userId,{profilePic:uploadResponse.secure_url}, {new:true})
 
-    res.status(200).json(updatedUser)
+    res.status(200).json(updateUser)
 
   }catch(error){
     console.log("Error in updated profile",error.message);
