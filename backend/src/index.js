@@ -3,7 +3,7 @@ dotenv.config();
 import express from "express";
 import cookieParser from"cookie-parser"
 import cors from "cors";
-
+import bodyParser from 'body-parser';
 import {connectDB} from "./lib/db.js";
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
@@ -12,11 +12,13 @@ import messageRoutes from "./routes/message.route.js";
 const app=express();
 
 const PORT=process.env.PORT;
-
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
     origin:"http://localhost:5173",
+    methods:"GET, POST, PUT, DELETE, PATCH, HEAD",
     credentials:true
 }))
 app.use("/api/auth",authRoutes)
