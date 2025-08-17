@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://quick-chat-five-bice.vercel.app/"],
+    origin: ["http://localhost:5173", process.env.CLIENT_URL],
     credentials: true,
   })
 );
