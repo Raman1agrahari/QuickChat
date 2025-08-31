@@ -10,7 +10,7 @@ const io = new Server(server, {
       origin: [
       "http://localhost:5173",
       process.env.CLIENT_URL,
-      "https://quick-chat-git-main-raman-agraharis-projects.vercel.app"
+      "https://quick-chat-five-bice.vercel.app"
     ],
     credentials: true,
   },
