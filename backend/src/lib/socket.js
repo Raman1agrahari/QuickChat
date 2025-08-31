@@ -11,7 +11,8 @@ const io = new Server(server, {
       "http://localhost:5173",
       process.env.CLIENT_URL,
       "https://quick-chat-five-bice.vercel.app"
-    ],
+    ].filter(Boolean),                  // null/undefined values remove ho jaye
+    methods: ["GET", "POST"],
     credentials: true,
   },
 });
@@ -34,7 +35,7 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     console.log("A user disconnected", socket.id);
-    delete userSocketMap[userId];
+    if (userId) delete userSocketMap[userId];
     io.emit("getOnlineUsers", Object.keys(userSocketMap));
   });
 });
